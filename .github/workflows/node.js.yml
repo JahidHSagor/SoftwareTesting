@@ -42,3 +42,4 @@ jobs:
           npm test -- --coverage
           npm install -g coveralls
           cat coverage/lcov.info | coveralls
+        
