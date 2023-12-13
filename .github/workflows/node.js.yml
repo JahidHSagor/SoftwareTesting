@@ -40,3 +40,5 @@ jobs:
     - run: npm install -g coveralls
     - run: npm test -- --coverage
     - run: cat coverage/lcov.info | coveralls
+    - name: Coveralls GitHub Action
+      uses: coverallsapp/github-action@v2.2.3
