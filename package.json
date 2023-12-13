@@ -1,0 +1,15 @@
+{
+  "name": "softwaretesting",
+  "version": "1.0.0",
+  "description": "This is a project template for students participating in Software Testing course\r at Tampere University.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
