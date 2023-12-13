@@ -1,9 +1,11 @@
 name: Node.js CI
 
-on: ["push", "pull_request"]
+on:
+  - push
+  - pull_request
 
 jobs:
-  build:
+  build-and-coverage:
     runs-on: ubuntu-latest
 
     strategy:
@@ -11,32 +13,32 @@ jobs:
         node-version: [16.x, 18.x]
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
-    - run: npm test -- --coverage
-      env:
-        CI: true
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-  coverage:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    runs-on: ubuntu-latest
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
-    needs: build
+      - name: Print Current Directory and List Files
+        run: |
+          pwd
+          ls
 
-    steps:
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14.x
-    - run: npm install -g coveralls
-    - run: npm test -- --coverage
-    - run: cat coverage/lcov.info | coveralls
-    - name: Coveralls GitHub Action
-      uses: coverallsapp/github-action@v2.2.3
+      - name: Install Dependencies and Build
+        run: |
+          npm ci
+          npm run build --if-present
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Run Tests with Coverage and Publish to Coveralls
+        env:
+          CI: true
+        run: |
+          npm test -- --coverage
+          npm install -g coveralls
+          cat coverage/lcov.info | coveralls
