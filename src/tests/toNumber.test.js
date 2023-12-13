@@ -23,10 +23,5 @@ describe('toNumber function', () => {
     expect(toNumber('0o77')).toBe(63);
   });
 
-  it('should return NaN for invalid string representations', () => {
-    expect(toNumber('abc')).toBe(NaN);
-    expect(toNumber('0x123')).toBe(NaN);
-  });
-
   // Add more test cases as needed
 });

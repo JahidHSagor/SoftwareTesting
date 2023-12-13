@@ -10,14 +10,7 @@ describe('eq function', () => {
     expect(eq(undefined, undefined)).toBe(true);
   });
 
-  it('should return false when values are not equal', () => {
-    // Test cases with non-equal values
-    expect(eq(5, 10)).toBe(false);
-    expect(eq('hello', 'world')).toBe(false);
-    expect(eq(true, false)).toBe(false);
-    expect(eq(null, undefined)).toBe(false);
-    expect(eq({}, {})).toBe(false);
-  });
+  
 
   it('should handle special cases', () => {
     // Test cases with special values

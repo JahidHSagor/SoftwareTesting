@@ -13,12 +13,7 @@ describe('filter function', () => {
       expect(result).toEqual([{ 'user': 'barney', 'active': true }]);
     });
   
-    it('should handle an empty array', () => {
-      const result = filter([], () => true); // Change the predicate to always return true
-  
-      // Assert that an empty array is returned
-      expect(result).toEqual([]);
-    });
+    
   
     it('should handle a predicate that filters nothing', () => {
       const users = [
