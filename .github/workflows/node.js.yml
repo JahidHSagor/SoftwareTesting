@@ -38,6 +38,7 @@ jobs:
       - name: Run Tests with Coverage and Publish to Coveralls
         env:
           CI: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm test -- --coverage
           npm install -g coveralls
