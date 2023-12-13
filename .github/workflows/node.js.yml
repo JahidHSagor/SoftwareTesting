@@ -1,14 +1,9 @@
 name: Node.js CI
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: ["push", "pull_request"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -28,8 +23,7 @@ jobs:
     - run: npm test -- --coverage
       env:
         CI: true
-        COVERALLS_REPO_TOKEN: ${ COVERALLS_REPO_TOKEN=fKE14PXX89jgRYf0FU1wc4Sm3injbjhqb}
-
+        github-token: ${{ secrets.GITHUB_TOKEN }}
   coverage:
 
     runs-on: ubuntu-latest
