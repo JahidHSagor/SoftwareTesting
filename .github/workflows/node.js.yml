@@ -25,6 +25,10 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    - run: cd $GITHUB_WORKSPACE && npm test -- --coverage
+      env:
+        CI: true
+        COVERALLS_REPO_TOKEN: ${ COVERALLS_REPO_TOKEN=fKE14PXX89jgRYf0FU1wc4Sm3injbjhqb}
 
   coverage:
 
